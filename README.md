@@ -91,3 +91,72 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
 #### 其他思路
 两个两个合并（divid and conquer）
 
+-----
+
+### 39 Combination Sum
+给一个candidate set 和一个target，给出所有和为target的组合。每个数字可用多次
+
+Input: candidates = [2,3,6,7], target = 7,
+
+A solution set is:
+[
+  [7],
+  [2,2,3]
+]
+
+#### Thought：
+Backtracking
+
+#### Answer:
+```
+vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+       //use backtracking
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> res;
+        vector<int> temp;
+        bt(candidates, target, res, temp, 0);
+        return res;
+    }
+    
+    void bt(vector<int>& candidates, int target, vector<vector<int>>& res,vector<int>& temp, int pos) {
+        if(target == 0) {
+            //valid result
+            res.push_back(temp);
+            return;
+        }
+        
+        if(pos >= candidates.size() || target < candidates[pos]) {
+            //bounding: not valid result
+            return;
+        }
+        
+        for(int i = pos; i < candidates.size(); ++i) {
+            temp.push_back(candidates[i]);
+            bt(candidates, target - candidates[i], res, temp, i);
+            temp.pop_back();
+        }
+    }
+```
+#### 其他思路：
+Dynamic Programming
+
+### 40 Combination Sum II
+每个数字只能用一次，求unique combinations。
+
+#### Thoughts
+和39题一样，只要跳过duplicates就好了
+
+#### Answer：
+```
+for(int i = pos; i < candidates.size();++i) {
+            if(i&&candidates[i]==candidates[i-1] &&i>pos) continue;
+            temp.push_back(candidates[i]);
+            bt(candidates, target - candidates[i], res, temp, i + 1);
+            temp.pop_back();
+        }
+```
+
+注意： i > pos 是为了防止特殊情况：如果开头第一个数（位于pos）和前一个数（pos-1）是一样的时候，不视为dup
+
+
+
