@@ -7,7 +7,7 @@
 expand from the center: 找相同char的cluster，再向左向右展开
 
 #### 答案：
-''' 
+``` 
     string longestPalindrome(string s) {
         if (s.empty()) return "";
         if (s.size() == 1) return s;
@@ -23,4 +23,4 @@ expand from the center: 找相同char的cluster，再向左向右展开
         }
         return s.substr(min_start, max_len);
     }
-'''
+```
