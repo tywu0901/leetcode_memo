@@ -1,12 +1,12 @@
-# leetcode 日记
+# leetcode memo
 -----
 ### #5 Longest Palindromic Substring
-给一个string，找出最长的回文substring
+Given a string，find the longest Palindromic substring
 
-#### 思路：
-expand from the center: 找相同char的cluster，再向左向右展开
+#### Thoughts：
+expand from the center: find the char cluster first (cluster constructed by the same chars)，then expand to the left and the right.
 
-#### 答案：
+#### Answer：
 ``` 
 string longestPalindrome(string s) {
     if (s.empty()) return "";
@@ -29,11 +29,11 @@ string longestPalindrome(string s) {
 ### #11 Container With Most Water
 ![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_11.jpg)
 
-给一个vector, 每一个数字代表墙的高度，求困住水的max
+Given a vector of the heights of walls, find the maximum water that could be trapped
 
-#### 思路：
-先从最左和最右开始，往中间traverse。
-#### 答案：
+#### Thoughts：
+Start from the left-most and the right-most walls, and then travese to the center, finding higher walls/ more trapped volunm.
+#### Answer：
 ``` 
 int maxArea(vector<int>& height) {
     int water = 0;
