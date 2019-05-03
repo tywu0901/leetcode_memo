@@ -93,7 +93,7 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
 
 -----
 
-### 39 Combination Sum
+### #39 Combination Sum
 给一个candidate set 和一个target，给出所有和为target的组合。每个数字可用多次
 
 Input: candidates = [2,3,6,7], target = 7,
@@ -137,10 +137,11 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         }
     }
 ```
+
 #### 其他思路：
 Dynamic Programming
 
-### 40 Combination Sum II
+### #40 Combination Sum II
 每个数字只能用一次，求unique combinations。
 
 #### Thoughts
