@@ -25,3 +25,23 @@ string longestPalindrome(string s) {
     return s.substr(min_start, max_len);
 }
 ```
+-----
+### #11 Container With Most Water
+给一个vector, 每一个数字代表墙的高度，求困住水的max
+
+#### 思路：
+先从最左和最右开始，往中间traverse。
+#### 答案：
+``` 
+int maxArea(vector<int>& height) {
+    int water = 0;
+    int i = 0, j = height.size() - 1;
+    while (i < j) {
+        int h = min(height[i], height[j]);
+        water = max(water, (j - i) * h);
+        while (height[i] <= h && i < j) i++;
+        while (height[j] <= h && i < j) j--;
+    }
+    return water;
+}
+```
