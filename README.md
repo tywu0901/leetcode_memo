@@ -47,3 +47,47 @@ int maxArea(vector<int>& height) {
     return water;
 }
 ```
+-----
+### #23 Merge k Sorted Lists
+
+#### Thoughts：
+设一个container（我用的是vector，应该可以用priority queue），把每个lists当前的element装起来，找到这个container里面的min，连接到新的list上。
+
+#### Answer：
+``` 
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if (lists.size() == 0) return nullptr;
+        vector<int> v(lists.size());
+        ListNode* res = new ListNode(0);
+        ListNode* cur = res;
+        short flag = lists.size();
+        for (unsigned int i = 0; i < lists.size(); ++i ) {
+            if (lists[i] == nullptr) v[i] = MAX_VAL;
+            else v[i] = lists[i]->val;
+        }
+        for (unsigned int j = 0; j < lists.size(); ++j ) {
+            if (v[j] == MAX_VAL) --flag;
+        }
+        while (flag) {
+            auto it = min_element(v.begin(), v.end());
+            cur->next = lists[it - v.begin()];
+            cur = cur->next;
+            lists[it - v.begin()] = lists[it - v.begin()]->next;
+            if (lists[it - v.begin()] == nullptr) {
+                v[it - v.begin()] = MAX_VAL;
+                --flag;
+            }
+            else {
+                v[it - v.begin()] = lists[it - v.begin()]->val;
+                
+            }
+            
+
+        }
+        
+        return res->next;
+    }
+```
+#### 其他思路
+两个两个合并（divid and conquer）
+
