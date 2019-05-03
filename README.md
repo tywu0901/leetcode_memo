@@ -27,7 +27,7 @@ string longestPalindrome(string s) {
 ```
 -----
 ### #11 Container With Most Water
-![image](https://github.com//tywu0901/leetcode-/raw/master/images/question_11.jpg)
+![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_11.jpg)
 
 给一个vector, 每一个数字代表墙的高度，求困住水的max
 
