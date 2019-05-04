@@ -163,6 +163,7 @@ for(int i = pos; i < candidates.size();++i) {
 
 ### #42 Trapping Rain Water
 给一个vector，记录的是墙的高度，求能困住的水的体积（可以对比#11）
+![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_42.jpg)
 
 #### Thoughts
 1. Brute Force: 每一格去找左边的最高和右边的最高，再取min（left_max, right_max），这一格水的高度就是min（left_max, right_max)- height[i].
