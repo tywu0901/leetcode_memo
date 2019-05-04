@@ -159,5 +159,24 @@ for(int i = pos; i < candidates.size();++i) {
 
 注意： i > pos 是为了防止特殊情况：如果开头第一个数（位于pos）和前一个数（pos-1）是一样的时候，不视为dup
 
+-----
+
+### #42 Trapping Rain Water
+给一个vector，记录的是墙的高度，求能困住的水的体积（可以对比#11）
+
+#### Thoughts
+1. Brute Force: 每一格去找左边的最高和右边的最高，再取min（left_max, right_max），这一格水的高度就是min（left_max, right_max)- height[i].
+2. Dynamic Programming:因为每次要找left_max和right_max是重复的，可以把找到的记下来。
+3. 2-pointers：在一个iteration里解决问题：
+    + Initialize left pointer to 0 and right pointer to size-1
+    + While left<right, do:
+        If height[left] is smaller than height[right]
+            If height[left] ≥ left_max, update left_max
+            Else add left_max−height[left] to ans
+            Add 1 to left (check next left).
+        Else
+            If height[right]≥right_max, update right_max
+            Else add right_max−height[right] to ans
+            Subtract 1 from right (check next right).
 
 
