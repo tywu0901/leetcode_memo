@@ -245,4 +245,32 @@ int trap(vector<int>& height) {
     }
 ```
 
+-----
+## #45 Jump Game II
+给一个正整数vector，每一个数代表能向前跳的距离，求从index 0 跳到最后一个index的最小步数
+
+#### Thoughts：
+BFS：把整个vector分成几个level（一步之类能到的index是level 1，两步之内是level 2），一旦最后一个index出现在level里，return这个level
+
+### Answer：
+```
+int jump(vector<int>& nums) {
+         int n = nums.size();
+	     if(n<2)return 0;
+         
+	     int level=0,start = 0, end = 0;
+
+	     while(true){
+		     level++;
+             int maxend = end + 1;
+		     for(;start<=end;start++){	
+			     maxend =max(maxend,nums[start]+start);
+			     if(maxend>=n-1)return level;   
+		     }
+		     end=maxend;
+	     }
+	     return 0; //never reach here actually
+     }
+```
+
 
