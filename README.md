@@ -178,5 +178,33 @@ for(int i = pos; i < candidates.size();++i) {
             * If height[right]≥right_max, update right_max
             * Else add right_max−height[right] to ans
             * Subtract 1 from right (check next right).
+            
+   注： 因为update的都是较小的那一边，所以不用再比较min（left_max, right_max）
+   
+#### Answer:
+```
+int trap(vector<int>& height) {
+        if (height.size() < 3) return 0;
+        
+        int l = 0, r = height.size() - 1, res = 0;
+        int lm = height[l], rm = height[r];
+        
+        while(l < r) {
+            int cl = height[l], cr = height[r];
+            if (cl <  cr) {
+                if (cl < lm) res += (lm-cl);
+                else lm = cl;
+                l++;
+            }
+            
+            else {
+                if (cr < rm) res += (rm-cr);
+                else rm = cr;
+                r--;
+            }
+        }
+        return res;
+    }
+```
 
 
