@@ -272,5 +272,33 @@ int jump(vector<int>& nums) {
 	     return 0; //never reach here actually
      }
 ```
+## 46 Permutations
+给一个不重复的数组，求排列
+
+#### Thoughts：
+Backtracking：每一个recursive call都排好一位，push_back之后再还原
+
+#### Answer：
+```
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        bt(nums, res, 0);
+        
+        return res;
+    }
+    
+    void bt(vector<int>& nums, vector<vector<int>>& res, int pos) {
+        if (pos >= nums.size()) {
+            res.push_back(nums);
+            return;
+        }
+        
+        for (int i = pos; i < nums.size(); ++i) {
+            swap(nums[pos], nums[i]);
+            bt(nums, res, pos+1);
+            swap(nums[pos], nums[i]);
+        }
+    }
+```
 
 
