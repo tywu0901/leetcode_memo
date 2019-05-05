@@ -561,7 +561,7 @@ int maxSubArray(vector& nums) {
 >
 > Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
 
-## Thoughts：
+#### Thoughts：
 这题不难，但是回顾一下lambda expression：
 > lambda 表达式
 >
@@ -603,5 +603,8 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
 #### 其他思路：
 BFS
 
+[Back to the top](#readme)
+
+-----
 
 
