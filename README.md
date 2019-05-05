@@ -47,7 +47,8 @@ string longestPalindrome(string s) {
 ```
 [Back to the top](#readme)
 
-=====
+-----
+
 ## #11 Container With Most Water
 ![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_11.jpg)
 
@@ -71,7 +72,8 @@ int maxArea(vector<int>& height) {
 ```
 [Back to the top](#readme)
 
-=====
+-----
+
 ## #23 Merge k Sorted Lists
 
 #### Thoughts：
@@ -117,7 +119,8 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
 
 [Back to the top](#readme)
 
-=====
+-----
+
 
 ## #39 Combination Sum
 给一个candidate set 和一个target，给出所有和为target的组合。每个数字可用多次
@@ -187,7 +190,8 @@ for(int i = pos; i < candidates.size();++i) {
 
 [Back to the top](#readme)
 
-=====
+-----
+
 ## #41 First Missing Positive
 给一个unsorted array，求第一个没出现的正整数
 
@@ -226,7 +230,8 @@ int firstMissingPositive(vector<int>& nums) {
 
 [Back to the top](#readme)
 
-=====
+-----
+
 
 ## #42 Trapping Rain Water
 给一个vector，记录的是墙的高度，求能困住的水的体积（可以对比#11）
@@ -277,7 +282,8 @@ int trap(vector<int>& height) {
 
 [Back to the top](#readme)
 
-=====
+-----
+
 ## #45 Jump Game II
 给一个正整数vector，每一个数代表能向前跳的距离，求从index 0 跳到最后一个index的最小步数
 
@@ -307,7 +313,8 @@ int jump(vector<int>& nums) {
 
 [Back to the top](#readme)
 
-=====
+-----
+
 
 ## #46 Permutations
 给一个不重复的数组，求排列
@@ -339,7 +346,8 @@ Backtracking：每一个recursive call都排好一位，push_back之后再还原
 ```
 [Back to the top](#readme)
 
-=====
+-----
+
 
 ## #48 Matrix Rotation
 把一个matrix顺时针转90度
@@ -367,7 +375,8 @@ Credit to leetcode user @shichaotan:
 
 [Back to the top](#readme)
 
-=====
+-----
+
 
 ## #49 Group Anagrams
 给一个string的vector，输出里把相同字母出现相同字数的string归到一起。
@@ -407,7 +416,8 @@ Credit to leetcode user @shichaotan:
 
 [Back to the top](#readme)
 
-=====
+-----
+
 
 
 
