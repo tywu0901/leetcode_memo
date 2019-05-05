@@ -1,5 +1,6 @@
 # leetcode memo
 -----
+
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
 
@@ -298,6 +299,43 @@ Backtracking：每一个recursive call都排好一位，push_back之后再还原
             bt(nums, res, pos+1);
             swap(nums[pos], nums[i]);
         }
+    }
+```
+-----
+
+## 49 Group Anagrams
+给一个string的vector，输出里把相同字母出现相同字数的string归到一起。
+
+#### Thought：
+数字母，用字母个数作为key在一个map里存储string
+
+#### Answer：
+```
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string, vector<string>> m;
+        for (string s : strs) {
+            string stamp = charCount(s);
+            m[stamp].push_back(s);
+        }
+        
+        vector<vector<string>> res;
+        for (auto p : m) {
+            res.push_back(p.second);
+        }
+        return res;
+    }
+    
+    string charCount(string s) {
+        int counter[26] = {0};
+        string res = "";
+        for (int i = 0; i < s.size(); ++i) {
+            counter[s[i] - 'a'] += 1;
+        }
+        
+        for (int j = 0; j < 26; ++j) {
+            if (counter[j] != 0) res+= string(counter[j], j + 'a');
+        }
+        return res;
     }
 ```
 
