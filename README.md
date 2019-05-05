@@ -18,6 +18,7 @@
 
 [49. Group Anagrams](#49-Group-Anagrams)
 
+[53. Maximum Subarray](#53-Maximum-Subarray)
 
 
 ## #5 Longest Palindromic Substring
@@ -413,6 +414,53 @@ Credit to leetcode user @shichaotan:
         return res;
     }
 ```
+
+[Back to the top](#readme)
+
+-----
+
+## #53 Maximum Subarray
+给一个vector，找出和最大的subarray。
+
+#### Thoughts:
+traverse这个array，一旦前面的和小于零即舍去不要。
+
+#### Answer：
+```
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sum = 0, res = min_val;
+        
+        for (int i : nums) {
+            sum += i;
+            res = (res<sum)? sum : res;
+            sum = (sum >=0)? sum : 0;
+        }
+        return res;
+    }
+    
+private:
+    int min_val = -2147483647;
+    //这里把res设成最小值是为了整个vector都是负数的情况
+```
+
+#### Better Answer：
+Credit to Leetcode user @sumedhds
+
+```
+int maxSubArray(vector& nums) {
+	int reset=0;
+	int maxsum=0;
+	for(int i=0; i<nums.size(); i++){
+		reset += nums[i];
+		reset = max(reset, nums[i]); //这里先比较，如果全是负数，那么最小的负数就会被留下来
+		maxsum = max(maxsum, reset);
+	}
+	return maxsum;
+}
+```
+
+
 
 [Back to the top](#readme)
 
