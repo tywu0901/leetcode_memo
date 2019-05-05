@@ -1,6 +1,6 @@
 # leetcode memo
 -----
-[#5 Longest Palindromic Substring](/#5-longest-palindromic-substring/)
+[#5 Longest Palindromic Substring](#5-longest-palindromic-substring)
 
 
 ## #5 Longest Palindromic Substring
