@@ -1,6 +1,8 @@
 # leetcode memo
 -----
 
+
+
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
 
@@ -273,7 +275,7 @@ int jump(vector<int>& nums) {
 	     return 0; //never reach here actually
      }
 ```
-## 46 Permutations
+## #46 Permutations
 给一个不重复的数组，求排列
 
 #### Thoughts：
@@ -303,7 +305,30 @@ Backtracking：每一个recursive call都排好一位，push_back之后再还原
 ```
 -----
 
-## 49 Group Anagrams
+## #48 Matrix Rotation
+把一个matrix顺时针转90度
+
+#### Thoughts：
+Credit to leetcode user @shichaotan:
+![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_48_1.png)
+![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_48_2.png)
+先reverse，然后做transpose。
+
+#### Answer：
+```
+    void rotate(vector<vector<int>>& matrix) {
+        reverse(matrix.begin(), matrix.end());
+        for (int i = 0; i < matrix.size(); ++i) {
+            for (int j = i + 1; j < matrix[i].size(); ++j)
+                swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+```
+
+
+-----
+
+## #49 Group Anagrams
 给一个string的vector，输出里把相同字母出现相同字数的string归到一起。
 
 #### Thought：
@@ -338,5 +363,8 @@ Backtracking：每一个recursive call都排好一位，push_back之后再还原
         return res;
     }
 ```
+
+-----
+
 
 
