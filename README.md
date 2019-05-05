@@ -1,6 +1,23 @@
 # leetcode memo
 -----
-[#5 Longest Palindromic Substring](#5-longest-palindromic-substring)
+[5. Longest Palindromic Substring](#5-longest-palindromic-substring)
+
+[11. Container With Most Water](#11-Container-With-Most-Water)
+
+[23. Merge k Sorted Lists](#23-Merge-k-Sorted-Lists)
+
+[39. Combination Sum](#39-Combination-Sum)
+
+[41. First Missing Positive](#41-First-Missing-Positive)
+
+[42. Trapping Rain Water](#42-Trapping-Rain-Water)
+
+[45. Jump Game II](#45-Jump-Game-II)
+
+[48. Matrix Rotation](#48-Matrix-Rotation)
+
+[49. Group Anagrams](#49-Group-Anagrams)
+
 
 
 ## #5 Longest Palindromic Substring
