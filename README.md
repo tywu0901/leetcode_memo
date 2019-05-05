@@ -1,10 +1,11 @@
-# leetcode memo
+# LEETCODE MEMO
 -----
+
 [5. Longest Palindromic Substring](#5-longest-palindromic-substring)
 
 [11. Container With Most Water](#11-Container-With-Most-Water)
 
-[15. 3Sum](#15-3Sum)
+[15&16. 3Sum & 3SumClosest](#15-3Sum)
 
 [23. Merge k Sorted Lists](#23-Merge-k-Sorted-Lists)
 
@@ -21,6 +22,8 @@
 [49. Group Anagrams](#49-Group-Anagrams)
 
 [53. Maximum Subarray](#53-Maximum-Subarray)
+
+[56. Merge Intervals](#56-Merge-Intervals)
 
 
 ## #5 Longest Palindromic Substring
@@ -107,6 +110,45 @@ traverse这个sorted array. 每到一个位置时，取当前数，下一个数�
                     while ((nums[l-1] == nums[l]) && (l < r)) l++; //get rid of duplicates
                     while ((nums[r+1] == nums[r]) && (l < r)) r--; //get rid of duplicates
                             
+                }
+            }
+            
+        }
+        return res;
+    }
+```
+
+## #16 3Sum Closest
+给一个vector和一个target value，找出 a+b+c 最接近target 的组合
+
+#### Thought:
+一样的思路，记录最接近的和即可
+
+#### Answer：
+```
+int threeSumClosest(vector<int>& nums, int target) {
+        if (nums.size() == 0) return 0;
+        else if (nums.size() == 1) return nums[0];
+        else if (nums.size() == 2) return nums[0] + nums[1];
+        int res = nums[0] + nums[1] + nums[2];
+        std::sort(nums.begin(), nums.end());
+        
+        for (int i = 0; i < nums.size()-2; ++i) {
+            if ((i > 0) && (nums[i-1] == nums[i])) continue;
+            
+            int l = i+1;
+            int r = nums.size()-1;
+            while (l < r) {
+                int curSum = nums[i] + nums[l] + nums[r];
+                if (curSum == target) return target;
+                if (std::abs(curSum - target) < std::abs(res - target)) res = curSum;
+                if (curSum > target) {
+                    r--;
+                    while (nums[r+1] == nums[r] && (l < r)) r--;
+                }
+                else {
+                    l++;
+                    while (nums[l-1] == nums[l] && (l < r)) l++;
                 }
             }
             
@@ -510,6 +552,56 @@ int maxSubArray(vector& nums) {
 
 -----
 
+
+## #56 Merge Intervals
+给一个vecter里面都是interval，把能合并的合并了
+> Input: [[1,3],[2,6],[8,10],[15,18]]
+>
+> Output: [[1,6],[8,10],[15,18]]
+>
+> Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
+
+## Thoughts：
+这题不难，但是回顾一下lambda expression：
+> lambda 表达式
+>
+>[capture list] (params list) mutable exception-> return type { function body }
+
+```
+bool cmp(int a, int b)
+{
+    return  a < b;
+}
+int main{
+    vector<int> myvec{ 3, 2, 5, 7, 3, 2 };
+    vector<int> lbvec(myvec);
+
+    sort(myvec.begin(), myvec.end(), cmp); // 旧式做法
+    sort(lbvec.begin(), lbvec.end(), [](int a, int b) -> bool { return a < b; });   // Lambda表达式
+}
+
+```
+
+#### Answer:
+```
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+            if (ins.empty()) return vector<Interval>{};
+    vector<Interval> res;
+    sort(ins.begin(), ins.end(), [](Interval a, Interval b){return a.start < b.start;});
+    res.push_back(ins[0]);
+    for (int i = 1; i < ins.size(); i++) {
+        if (res.back().end < ins[i].start) res.push_back(ins[i]);
+        else
+            res.back().end = max(res.back().end, ins[i].end);
+    }
+    return res;
+
+    }
+    
+```
+
+#### 其他思路：
+BFS
 
 
 
