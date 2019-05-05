@@ -613,6 +613,8 @@ BFS
 俩string代表俩binary number，输出他们的和（同样是string of binary number）
 
 #### 单纯的欣赏环节：
+Credit to Leetcode User @makuiyu :
+
 ```
 string addBinary(string a, string b)
     {
@@ -631,4 +633,7 @@ string addBinary(string a, string b)
     }
 ```
 
+[Back to the top](#readme)
+
+-----
 
