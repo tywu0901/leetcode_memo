@@ -25,6 +25,8 @@
 
 [56. Merge Intervals](#56-Merge-Intervals)
 
+[67. Add Binary](#67-Add-Binary)
+
 
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
@@ -606,5 +608,27 @@ BFS
 [Back to the top](#readme)
 
 -----
+
+## #67 Add Binary
+俩string代表俩binary number，输出他们的和（同样是string of binary number）
+
+#### 单纯的欣赏环节：
+```
+string addBinary(string a, string b)
+    {
+        string s = "";
+        
+        int c = 0, i = a.size() - 1, j = b.size() - 1;
+        while(i >= 0 || j >= 0 || c == 1)
+        {
+            c += i >= 0 ? a[i --] - '0' : 0;
+            c += j >= 0 ? b[j --] - '0' : 0;
+            s = char(c % 2 + '0') + s;
+            c /= 2;
+        }
+        
+        return s;
+    }
+```
 
 
