@@ -1,6 +1,6 @@
 # leetcode memo
 -----
-
+[#5 Longest Palindromic Substring](/#5-longest-palindromic-substring/)
 
 
 ## #5 Longest Palindromic Substring
@@ -310,8 +310,11 @@ Backtracking：每一个recursive call都排好一位，push_back之后再还原
 
 #### Thoughts：
 Credit to leetcode user @shichaotan:
+
 ![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_48_1.png)
+
 ![image](https://github.com//tywu0901/leetcode_memo/raw/master/images/question_48_2.png)
+
 先reverse，然后做transpose。
 
 #### Answer：
