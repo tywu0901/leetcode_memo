@@ -4,6 +4,8 @@
 
 [11. Container With Most Water](#11-Container-With-Most-Water)
 
+[15. 3Sum](#15-3Sum)
+
 [23. Merge k Sorted Lists](#23-Merge-k-Sorted-Lists)
 
 [39&40. Combination Sum](#39-Combination-Sum)
@@ -71,6 +73,48 @@ int maxArea(vector<int>& height) {
     return water;
 }
 ```
+[Back to the top](#readme)
+
+-----
+
+## #15 3Sum
+给一个vector，找出所有符合a+b+c = 0 的组合
+
+#### Thought:
+先sort。
+
+traverse这个sorted array. 每到一个位置时，取当前数，下一个数，和数组最后一个数（最大数）求和。如果大于零，向后移动指针；如果小于零，则向前移动指针；等于零则为要找的组合。
+
+#### Answer：
+```
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> res;
+        std::sort(nums.begin(), nums.end());
+        if (nums.size() < 3) return res;
+        
+        for (int i = 0; i < nums.size()-2; ++i) {
+            if ((i > 0) && (nums[i-1] == nums[i])) continue;
+            
+            int l = i+1;
+            int r = nums.size()-1;
+            while (l < r) {
+                if (nums[i] + nums[l] + nums[r] < 0) l++;
+                else if (nums[i] + nums[l] + nums[r] > 0 ) r--;
+                else {
+                    res.push_back(vector<int>{nums[i], nums[l], nums[r]});
+                    r--;
+                    l++;
+                    while ((nums[l-1] == nums[l]) && (l < r)) l++; //get rid of duplicates
+                    while ((nums[r+1] == nums[r]) && (l < r)) r--; //get rid of duplicates
+                            
+                }
+            }
+            
+        }
+        return res;
+    }
+```
+
 [Back to the top](#readme)
 
 -----
