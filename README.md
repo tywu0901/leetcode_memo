@@ -27,7 +27,7 @@
 
 [67. Add Binary](#67-Add-Binary)
 
-[69. Sqrt(x)](#69-Sqrt(x))
+[69. Sqrt(x)](#69-Sqrtx)
 
 
 ## #5 Longest Palindromic Substring
@@ -644,11 +644,23 @@ string addBinary(string a, string b)
 求x的开方（最接近的整数）
 
 #### 数学小课堂：
-Newton's Method：
+[Newton's Method](https://en.wikipedia.org/?title=Newton%27s_method)是一种求根的近似值的迭代方法。
 
 要求x的开方，相当于是解`f(a) = a^2 - x `的根。
 
-我们用x作为近似值，根据Newton's Law: `$a_{n+1} = a_{n} - \frac{f(x_n)}{f'(x_n)}$`
+我们用x作为近似值，根据Newton's Law: `a_(n+1) = a_n - (f(a_n)/f'(a_n))`, 带入f得`a_(n+1) = a_n - (a_n^2 - x)/2a_n = (a_n^2 - x)/2a_n = (a_n - x/a_n)/2`
+
+所以每一次迭代，`r = (r + x/r) / 2`
+
+#### Answer:
+```
+int mySqrt(int x) {
+        long r = x;
+        while (r*r > x)
+            r = (r + x/r) / 2;
+        return r;
+    }
+```
 
 [Back to the top](#readme)
 
