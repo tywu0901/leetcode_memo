@@ -27,6 +27,8 @@
 
 [67. Add Binary](#67-Add-Binary)
 
+[69. Sqrt(x)](#69-Sqrt(x))
+
 
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
@@ -636,4 +638,20 @@ string addBinary(string a, string b)
 [Back to the top](#readme)
 
 -----
+
+
+## 69. Sqrt(x)
+求x的开方（最接近的整数）
+
+#### 数学小课堂：
+Newton's Method：
+
+要求x的开方，相当于是解`f(a) = a^2 - x `的根。
+
+我们用x作为近似值，根据Newton's Law: `$a_{n+1} = a_{n} - \frac{f(x_n)}{f'(x_n)}$`
+
+[Back to the top](#readme)
+
+-----
+
 
