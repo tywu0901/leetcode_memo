@@ -31,6 +31,8 @@
 
 [71. Simplify Path](#71-Simplify-Path)
 
+[75. Sort Colors](#75-Sort-Colors)
+
 
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
@@ -707,6 +709,65 @@ int mySqrt(int x) {
         for(auto str : s) res += "/"+str;
         return res.empty() ? "/" : res;
     }
+```
+
+[Back to the top](#readme)
+
+-----
+
+## #75 Sort Colors
+一个vector里只有0，1，2三种数。Sort这个array，把相同的数整理到一起。（输出的vector因该是[0,0,0...1,1,1.....2,2,2]）
+
+#### Thought:
+标记0和2的位置：pos0 = 0， pos2 = size() - 1
+
+如果是0就和pos0 swap，并且++pos0；同理如果是2就和pos2 swap，--pos2.
+
+最后1自然被留在了中间。
+
+#### Answer：
+```
+    void sortColors(vector<int>& nums) {
+        if (nums.empty() || nums.size() == 1) return;
+        int zeroP = 0, twoP = nums.size() - 1;
+	
+	// I was considering about the dups, but it actually is not necessary
+        //while (zeroP < nums.size() && nums[zeroP] == 0) zeroP++;
+        //while (twoP >= 0 && nums[twoP] == 2) twoP--;
+        //if (zeroP > twoP) return;
+	
+        for (int i = zeroP; i <= twoP; ++i) {
+            if (nums[i] == 0 && i != zeroP) swap(nums[i--], nums[zeroP++]);
+            else if (nums[i] == 2 && i!=twoP) swap(nums[i--], nums[twoP--]);
+        }
+    }
+```
+
+#### Another Solution:
+Credit to LeetCode User @shichaotan:
+
+标记0，1，2三个位置：pos0 = -1， pos1 = -1， pos2 = -1.
+
+每check一个数，如果是0，三个pos都加；如果是1，加pos1和pos2；如果是2，只加pos2.
+
+```
+void sortColors(int A[], int n) {
+    int n0 = -1, n1 = -1, n2 = -1;
+    for (int i = 0; i < n; ++i) {
+        if (A[i] == 0) 
+        {
+            A[++n2] = 2; A[++n1] = 1; A[++n0] = 0;
+        }
+        else if (A[i] == 1) 
+        {
+            A[++n2] = 2; A[++n1] = 1;
+        }
+        else if (A[i] == 2) 
+        {
+            A[++n2] = 2;
+        }
+    }
+}
 ```
 
 [Back to the top](#readme)
