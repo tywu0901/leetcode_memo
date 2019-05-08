@@ -29,6 +29,8 @@
 
 [69. Sqrt(x)](#69-Sqrtx)
 
+[71. Simplify Path](#71-Simplify-Path)
+
 
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
@@ -640,7 +642,7 @@ string addBinary(string a, string b)
 -----
 
 
-## 69. Sqrt(x)
+## #69 Sqrt(x)
 求x的开方（最接近的整数）
 
 #### 数学小课堂：
@@ -665,5 +667,51 @@ int mySqrt(int x) {
 [Back to the top](#readme)
 
 -----
+
+## #71 Simplify Path
+给一个代表路径的string，输出最简路径。
+
+>Input: "/home/"
+>
+>Output: "/home"
+
+>Input: "/a/b/../"
+>
+>Output: "/a"
+>
+>..表示上一层
+
+>Input: "/a/b/./"
+>
+>Output: "/a/b"
+>
+>.表示当前层
+
+#### Thought：
+把string变成stringstream，以‘/’断开，再逐个判断。
+
+用vecotr装被split出来的string，如果要返回上一层，就pop_back
+
+#### Answer：
+```
+    string simplifyPath(string path) {
+        vector<string> s;
+        string tmp;
+        stringstream ss(path);
+        while(getline(ss,tmp,'/')) {
+            if (tmp == "" or tmp == "."/* case // and case /./ */) continue;
+            if (tmp == ".." and !s.empty() /* case /../ */) s.pop_back();
+            else if (tmp != "..") s.push_back(tmp);
+        }
+        string res;
+        for(auto str : s) res += "/"+str;
+        return res.empty() ? "/" : res;
+    }
+```
+
+[Back to the top](#readme)
+
+-----
+
 
 
