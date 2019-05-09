@@ -33,6 +33,14 @@
 
 [75. Sort Colors](#75-Sort-Colors)
 
+## Permutation & Combination & Rotation
+
+[46. Permutations](#46-Permutations)
+
+[60. Permutation Sequence](#60-Permutation-Sequence)
+
+
+
 
 ## #5 Longest Palindromic Substring
 Given a string，find the longest Palindromic substring
@@ -611,6 +619,59 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
 #### 其他思路：
 BFS
 
+[Back to the top](#readme)
+
+-----
+
+## #60 Permutation Sequence
+给两个数，n是可用的正整数（n=3 即可用 1，2，3）  k是要给出的第几个组合。
+
+>Input: [1,2,3]
+>
+>Output:
+>
+>[
+>
+>  [1,2,3],
+>
+>  [1,3,2],
+>  
+>  [2,1,3],
+>  
+>  [2,3,1],
+>
+>  [3,1,2],
+>
+>  [3,2,1]
+>
+>]
+#### Thoughts:
+一个一个排：第i个位置的数为 `i + k/(n-1)!`
+
+#### Answer:
+```
+string getPermutation(int n, int k) {
+        int i,j,f=1;
+        string s(n,'0');
+        
+        //init
+        for(i=1;i<=n;i++){
+            f*=i; // f = n!
+            s[i-1]+=i; // make s become 1234...n
+        }
+        
+        for(i=0,k--;i<n;i++){
+            f/=n-i; // how many perms with n-i-1 numbers
+            j=i+k/f; // calculate index of char to put at s[i]
+            char c=s[j];
+            
+            s.erase(s.begin() + j); //get rid of the char we want
+            s.insert(s.begin() + i, c); // put it at the right place
+            k%=f; //finish arraging one char, move to the next
+        }
+        return s;        
+    }
+```
 [Back to the top](#readme)
 
 -----
