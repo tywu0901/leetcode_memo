@@ -34,6 +34,7 @@
 [75. Sort Colors](#75-Sort-Colors)
 
 ## Permutation & Combination & Rotation
+[31. Next Permutation](31-Next-Permutation)
 
 [46. Permutations](#46-Permutations)
 
@@ -224,6 +225,54 @@ ListNode* mergeKLists(vector<ListNode*>& lists) {
 
 -----
 
+## #31 Next Permutation
+给一个排列，求下一个排列
+
+#### Thoughts：
+From wiki：
+
+1. Find the largest index k such that nums[k] < nums[k + 1]. If no such index exists, just reverse nums and done.
+2. Find the largest index l > k such that nums[k] < nums[l].
+3. Swap nums[k] and nums[l].
+4. Reverse the sub-array nums[k + 1:].
+
+#### Answer：
+```
+void nextPermutation(vector<int>& nums) {
+        if (nums.empty() || nums.size() == 1) return;
+        auto iter = nums.end() - 2;
+        
+        while(iter >= nums.begin()) {
+            if (*iter < *(iter + 1)) break;
+            iter --;
+        }
+        
+        if (iter < nums.begin()) {
+            reverse(nums.begin(), nums.end());
+            return;
+        }
+        
+        auto iter2 = nums.end() - 1;
+        while(iter2 > iter) {
+            if (*iter2 > *iter) break;
+            iter2--;
+        }
+        // int temp = *iter;
+        // *iter = *iter2;
+        // *iter2 = temp;
+        iter_swap(iter, iter2);
+        reverse(iter+1, nums.end());
+        
+        
+        
+        
+    }
+```
+
+
+[Back to the top](#readme)
+
+-----
 
 ## #39 Combination Sum
 给一个candidate set 和一个target，给出所有和为target的组合。每个数字可用多次
