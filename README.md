@@ -34,7 +34,7 @@
 [75. Sort Colors](#75-Sort-Colors)
 
 ## Permutation & Combination & Rotation
-[31. Next Permutation](31-Next-Permutation)
+[31. Next Permutation](#31-Next-Permutation)
 
 [46. Permutations](#46-Permutations)
 
