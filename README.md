@@ -40,6 +40,8 @@
 
 [60. Permutation Sequence](#60-Permutation-Sequence)
 
+[77. Combinations](#77-Combinations)
+
 
 -----
 
@@ -878,6 +880,61 @@ void sortColors(int A[], int n) {
         }
     }
 }
+```
+
+[Back to the top](#readme)
+
+-----
+
+## #77 Combinations
+n:可用的数 （n=4 即 1，2，3，4）
+
+k: 生成k个数的组合
+
+#### Thoughs：
+思路和perm一样，用backtracking
+
+#### Answer：
+```
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> temp(k, 0);
+        if(k == 0) {
+            res.push_back(temp);
+            return res;
+        }
+        
+        
+        bt(n, k, res, temp, 1, 0);
+        
+        return res;
+    }
+    
+    void bt(int n, int k, vector<vector<int>>& res, vector<int>& temp, int start, int len) {
+        if(len == k) {
+            res.push_back(temp);
+            return;
+        }
+        
+        for (int i = start; i <= n; ++i) {
+            temp[len++] = i;
+            bt(n, k, res, temp, i+1, len);
+            len--;
+        }
+    }
+    
+//     void bt(int n, int k, vector<vector<int>>& res, vector<int>& temp, int start) {
+//         if(temp.size() == k) {
+//             res.push_back(temp);
+//             return;
+//         }
+        
+//         for (int i = start; i <= n; ++i) {
+//             temp.push_back(i);
+//             bt(n, k, res, temp, i+1);
+//             temp.pop_back();
+//         }
+//     }
 ```
 
 [Back to the top](#readme)
