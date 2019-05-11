@@ -42,6 +42,8 @@
 
 [77. Combinations](#77-Combinations)
 
+[78. Subsets](#78-Subsets)
+
 
 -----
 
@@ -941,5 +943,70 @@ k: 生成k个数的组合
 
 -----
 
+## #78 Subsets
+给一个数组，输出所有的subset
+
+#### First Try：
+和perm的思路一样，只不过不管subset的size有多少都push_back到final res里
+
+#### Code：
+```
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>> res;
+        if (nums.empty()) return res;
+        vector<int> temp;
+        
+        bt(nums, temp, res, 0);
+        
+        return res;
+
+    }
+    
+    void bt(vector<int>& nums,  vector<int>& temp, vector<vector<int>>& res, int start) {
+        res.push_back(temp);
+        
+        for (int i = start; i < nums.size(); ++i) {
+            temp.push_back(nums[i]);
+            bt(nums, temp, res, i+1);
+            temp.pop_back();
+        }
+    }
+```
+
+### Better Solution:
+Credit to LeetCode User @jianchao-li
+
+首先，给的数组长度是n，那么就有2^n个subset
+
+根据观察，1出现一次隔开一个，2连续出现两次然后空开两个，以此类推
+
+>[], [ ], [ ], [    ], [ ], [    ], [    ], [       ]
+>
+>[], [1], [ ], [1   ], [ ], [1   ], [    ], [1      ]
+>
+>[], [1], [2], [1, 2], [ ], [1   ], [2   ], [1, 2   ]
+>
+>[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]
+
+#### Code:
+```
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int n = nums.size(), p = 1 << n // size of subset;
+        vector<vector<int>> subs(p, []) //result;
+        for (int i = 0; i < p; i++) {
+            for (int j = 0; j < n; j++) {
+                if ((i >> j) & 1) {
+                    subs[i].push_back(nums[j]);
+                }
+            }
+        }
+        return subs;
+    }
+```
+注：这种方法在有dups的时候无效，因为无法确定subset有多少个
+
+[Back to the top](#readme)
+
+-----
 
 
