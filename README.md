@@ -37,7 +37,8 @@
 
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
-## Permutation & Combination & Rotation
+<details><summary><b> Permutation & Combination & Rotation </b></summary>
+	
 [31. Next Permutation](#31-Next-Permutation)
 
 [46. Permutations](#46-Permutations)
@@ -47,6 +48,7 @@
 [77. Combinations](#77-Combinations)
 
 [78. Subsets](#78-Subsets)
+</details>
 
 
 -----
