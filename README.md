@@ -35,6 +35,8 @@
 
 [96. Unique Binary Search Trees](#96-Unique-Binary-Search-Trees)
 
+[347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
+
 ## Permutation & Combination & Rotation
 [31. Next Permutation](#31-Next-Permutation)
 
@@ -1040,6 +1042,37 @@ Credit to LeetCode User @leo_mao:
     }
  ```
  
+[Back to the top](#readme)
+
+-----
+
+## #347 Top K Frequent Elements
+
+#### Thoughts:
+次数就想到map，第几大就想到priority queue。
+
+先用一个map统计每个字符串出现的次数，然后把字符串往pq（小顶堆）里放，同时控制pq的大小。
+
+所以pq的top就是第k多出现的次数。那么只要字符串出现的字数大于top，就是我们要找的数。
+
+#### Code:
+```
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        unordered_map<int, int> counts;
+        priority_queue<int, vector<int>, greater<int>> max_k;
+        for(auto i : nums) ++counts[i];
+        for(auto & i : counts) {
+            max_k.push(i.second);
+            while(max_k.size() > k) max_k.pop();
+        }
+        vector<int> res;
+        for(auto & i : counts) {
+            if(i.second >= max_k.top()) res.push_back(i.first);
+        }
+        return res;
+    }
+```
+
 [Back to the top](#readme)
 
 -----
