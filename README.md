@@ -37,6 +37,8 @@
 
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
+[402. Remove K Digits](#402-Remove-K-Digits)
+
 <br>
 
 
@@ -1077,6 +1079,43 @@ Credit to LeetCode User @leo_mao:
         return res;
     }
 ```
+
+[Back to the top](#readme)
+
+-----
+
+## #402 Remove K Digits
+
+#### First Thought:
+每一个iteration找出 num[i] > num[i+1]的数删掉；如果没有，就删最后一个。
+
+#### Better Thought:
+用stack。如果num[i]比答案最会一个数字小，pop_back并且i--;
+
+压栈时注意不能让0做第一个；
+
+最后如果还没删够k个数，从尾巴上删；
+
+#### Code：
+```
+    string removeKdigits(string num, int k) {
+       string ans = "";
+       
+       for (char c : num) {
+           while (ans.length() && ans.back() > c && k) {
+               ans.pop_back();
+               k--;
+           }
+           
+           if (ans.length() || c != '0')  ans.push_back(c); 
+       }
+       
+       while (ans.length() && k--)  ans.pop_back(); 
+    
+       return ans.empty() ? "0" : ans;
+    }
+```
+
 
 [Back to the top](#readme)
 
