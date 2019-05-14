@@ -39,6 +39,8 @@
 
 [402. Remove K Digits](#402-Remove-K-Digits)
 
+[819. Most Common Word](#819-Most-Common-Word)
+
 <br>
 
 
@@ -1120,4 +1122,24 @@ Credit to LeetCode User @leo_mao:
 [Back to the top](#readme)
 
 -----
+## #819 Most Common Word
+
+#### Attention：
+主要是对stringstream的处理：如何变lowercase，如何去掉符号
+
+#### Code:
+```
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        unordered_set<string> ban(banned.begin(), banned.end());
+        unordered_map<string, int> count;
+        for (auto & c: paragraph) c = isalpha(c) ? tolower(c) : ' ';
+        istringstream iss(paragraph);
+        string w;
+        pair<string, int> res ("", 0);
+        while (iss >> w)
+            if (ban.find(w) == ban.end() && ++count[w] > res.second)
+                res = make_pair(w, count[w]);
+        return res.first;
+    }
+```
 
