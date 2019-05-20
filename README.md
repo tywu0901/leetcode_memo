@@ -35,6 +35,8 @@
 
 [96. Unique Binary Search Trees](#96-Unique-Binary-Search-Trees)
 
+[101. Symmetric Tree](#101-Symmetric-Tree)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1051,6 +1053,43 @@ Credit to LeetCode User @leo_mao:
     }
  ```
  
+[Back to the top](#readme)
+
+-----
+
+## #101 Symmetric Tree
+Check if the given tree is symmetric.
+
+> Example:  
+>     1  
+>    / \  
+>   2   2  
+>  /\   /\  
+> 3  4 4  3  
+> 
+> This is symmetric.
+
+#### Thoughts:
+首先根的值要一样。  
+然后左右树要是镜像的。  
+
+镜像：
+首先根值要一样。  
+然后左树的左子树要等于右树的右子树，左树的右子树要等于右树的左子树。
+
+#### Code：
+```
+    bool isSymmetric(TreeNode* root) {
+        return isMirror(root, root);
+    }
+    
+    bool isMirror(TreeNode* left, TreeNode* right) {
+        if (!left && ! right) return true;
+        if (!left || !right) return false;
+        
+        else return (left->val == right->val) && isMirror(left->left, right->right) && isMirror(left->right, right->left);
+    }
+```
 [Back to the top](#readme)
 
 -----
