@@ -597,7 +597,7 @@ Credit to leetcode user @shichaotan:
 #### Thoughts:
 traverse这个array，一旦前面的和小于零即舍去不要。
 
-#### Answer：
+#### Code：
 ```
 public:
     int maxSubArray(vector<int>& nums) {
@@ -668,7 +668,7 @@ int main{
 
 ```
 
-#### Answer:
+#### Code:
 ```
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
             if (ins.empty()) return vector<Interval>{};
@@ -718,7 +718,7 @@ BFS
 #### Thoughts:
 一个一个排：第i个位置的数为 `i + k/(n-1)!`
 
-#### Answer:
+#### Code:
 ```
 string getPermutation(int n, int k) {
         int i,j,f=1;
@@ -1096,6 +1096,29 @@ Check if the given tree is symmetric.
 
 -----
 
+## #122 Best Time to Buy and Sell Stock II 
+给一个array表示stock每天的价格，可以任意次数买卖，唯一的限制是必须卖了之后再买。求最大profit。
+
+#### Thoughts：
+不难但是思路可能想不到。如果价格上涨，那就一直不卖。在价格下跌的前一天卖。profit就是连续上涨时的价差的和。
+
+#### Code：
+```
+    int maxProfit(vector<int>& prices) {
+        int max = 0;
+        for (int i = 1; i < prices.size(); ++i) {
+            if (prices[i] > prices[i-1]) {
+                max+= prices[i] - prices[i-1];
+            }
+        }
+        return max;
+    }
+```
+
+[Back to the top](#readme)
+
+-----
+
 ## #347 Top K Frequent Elements
 
 #### Thoughts:
@@ -1126,28 +1149,7 @@ Check if the given tree is symmetric.
 [Back to the top](#readme)
 
 -----
-## #122 Best Time to Buy and Sell Stock II 
-给一个array表示stock每天的价格，可以任意次数买卖，唯一的限制是必须卖了之后再买。求最大profit。
 
-#### Thoughts：
-不难但是思路可能想不到。如果价格上涨，那就一直不卖。在价格下跌的前一天卖。profit就是连续上涨时的价差的和。
-
-#### Code：
-```
-    int maxProfit(vector<int>& prices) {
-        int max = 0;
-        for (int i = 1; i < prices.size(); ++i) {
-            if (prices[i] > prices[i-1]) {
-                max+= prices[i] - price[i-1];
-            }
-        }
-        return max;
-    }
-```
-
-[Back to the top](#readme)
-
------
 
 ## #402 Remove K Digits
 
