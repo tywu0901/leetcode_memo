@@ -37,6 +37,8 @@
 
 [101. Symmetric Tree](#101-Symmetric-Tree)
 
+[122. Best Time to Buy and Sell Stock II](#122-Best-Time-to-Buy-and-Sell-Stock-II)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1118,6 +1120,28 @@ Check if the given tree is symmetric.
             if(i.second >= max_k.top()) res.push_back(i.first);
         }
         return res;
+    }
+```
+
+[Back to the top](#readme)
+
+-----
+## #122 Best Time to Buy and Sell Stock II 
+给一个array表示stock每天的价格，可以任意次数买卖，唯一的限制是必须卖了之后再买。求最大profit。
+
+#### Thoughts：
+不难但是思路可能想不到。如果价格上涨，那就一直不卖。在价格下跌的前一天卖。profit就是连续上涨时的价差的和。
+
+#### Code：
+```
+    int maxProfit(vector<int>& prices) {
+        int max = 0;
+        for (int i = 1; i < prices.size(); ++i) {
+            if (prices[i] > prices[i-1]) {
+                max+= prices[i] - price[i-1];
+            }
+        }
+        return max;
     }
 ```
 
