@@ -39,6 +39,8 @@
 
 [122. Best Time to Buy and Sell Stock II](#122-Best-Time-to-Buy-and-Sell-Stock-II)
 
+[124. Binary Tree Maximum Path Sum](#124-Binary-Tree-Maximum-Path-Sum)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1114,6 +1116,44 @@ Check if the given tree is symmetric.
         return max;
     }
 ```
+
+[Back to the top](#readme)
+
+-----
+
+## #124 Binary Tree Maximum Path Sum
+给一个binary tree，求sum最大的path。
+
+这里的path可以是任意被parent-child边连起来的路线
+
+#### Thoughts:
+从leaf往root，一共两种可能：  
+1. curNode被包含在里面，那么max就是cur->val + leftmax + rightmax  
+2. curNode不被包含，那么max就是max（leftmax，rightmax）
+
+#### Code:
+ ```
+ public:
+    int maxPathSum(TreeNode* root) {
+        helper(root);
+        return curMax;
+    }
+    
+private:
+    int curMax =  - (1 << 16);
+    int helper (TreeNode* root){
+        if (!root) return 0;
+        
+        int l = max(0, helper(root->left));
+        int r = max(0, helper(root->right));//这里如果rmax比lmax大的话，lmax就自动被覆盖了
+        
+        curMax = max(curMax, l+r+root->val);
+        
+        return max(l, r) + root->val;
+    }
+ ```
+
+
 
 [Back to the top](#readme)
 
