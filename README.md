@@ -41,6 +41,8 @@
 
 [124. Binary Tree Maximum Path Sum](#124-Binary-Tree-Maximum-Path-Sum)
 
+[134. Gas Station](#134-Gas-Station)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1153,6 +1155,37 @@ private:
     }
  ```
 
+
+
+[Back to the top](#readme)
+
+-----
+
+## #134 Gas Station
+一共n个站。给俩数组：gas[n]一个是在第n站能补给的油量，cost[n]是n开到n+1消耗的油量。  
+问能不能开一个循环。如果不能返回-1，能的话返回哪一站作为起点（假设唯一解）。
+
+#### Thoughts：
+Credit to LeetCode User @daxianji007:  
+从第一站开始循环  
+如果够跑，继续循环；
+如果不够，假设从下一站开始，并且记录油量的缺损；如果到最后剩余的油量能补上这一缺损，则可以达成；否则返回-1。
+
+#### Code：
+```
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int start = 0, total = 0, tank = 0;
+        
+        for(int i = 0; i < gas.size(); i++) {
+            tank = tank + gas[i] - cost[i];
+            if (tank < 0) {
+                total += tank; tank = 0; start = i+1;
+            }
+        }
+        
+        return (tank+total<0)? -1 : start;
+    }
+```
 
 
 [Back to the top](#readme)
