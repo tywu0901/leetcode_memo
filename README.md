@@ -43,6 +43,8 @@
 
 [134. Gas Station](#134-Gas-Station)
 
+[136. Single Number](#136-Single-Number)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1187,6 +1189,30 @@ Credit to LeetCode User @daxianji007:
     }
 ```
 
+
+[Back to the top](#readme)
+
+-----
+
+## #136 Single Number
+一个数组里所有数字都出现了两次，只有一个数字出现过一次。求这个数。
+
+#### Thoughts：  
+不难想出别的方法，但是很难想到bit manipulation：  
+a xor b xor a = a  
+把所有的数字xor到一起，出现两次的数自己抵消了，只剩我们要找的出现过一次的数。  
+
+#### Code:
+```
+    int singleNumber(vector<int>& nums) {
+        int a = 0;
+        for (int i : nums) {
+            a ^= i;
+        }
+            
+        return a;
+    }
+```
 
 [Back to the top](#readme)
 
