@@ -45,7 +45,7 @@
 
 [136. Single Number](#136-Single-Number)
 
-[138. Copy List with Random Pointer](138-Copy-List-with-Random-Pointer)
+[138. Copy List with Random Pointer](#138-Copy-List-with-Random-Pointer)
 
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
