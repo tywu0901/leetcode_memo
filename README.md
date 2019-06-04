@@ -45,6 +45,8 @@
 
 [136. Single Number](#136-Single-Number)
 
+[138. Copy List with Random Pointer](138-Copy-List-with-Random-Pointer)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1211,6 +1213,74 @@ a xor b xor a = a
         }
             
         return a;
+    }
+```
+
+[Back to the top](#readme)
+
+-----
+
+## #138 Copy List with Random Pointer
+给一个list，node的结构是有一个next指针，一个random指针。做这个list的deep copy。
+
+#### Intuitive thoughts：
+做一个unordered map （hashmap），把每个复制过的点放到hashmap里（防止重复copy）。  
+Space Complaxity： O（n）
+
+#### Better Solution：
+1. 处理next：in place 复制list： 1->2->3 变成 1->1->2->2->3->3  
+2. 处理random：新复制的random = 旧node的random->next   
+3. 分离：一个跳一个
+
+#### Code：
+Credit to LeetCode user @liaison:
+```
+Node* copyRandomList(Node* head) {
+	Node* iter = head;
+        Node* next;
+
+  // First round: make copy of each node,
+  // and link them together side-by-side in a single list.
+  while (iter != nullptr) {
+    next = iter->next;
+
+    Node* copy = new Node(iter->val, nullptr, nullptr);
+    iter->next = copy;
+    copy->next = next;
+
+    iter = next;
+  }
+
+  // Second round: assign random pointers for the copy nodes.
+  iter = head;
+  while (iter != nullptr) {
+    if (iter->random != nullptr) {
+      iter->next->random = iter->random->next;
+    }
+    iter = iter->next->next;
+  }
+
+  // Third round: restore the original list, and extract the copy list.
+  iter = head;
+  Node* pseudoHead = new Node(0, nullptr, nullptr);
+  Node* copy;
+        Node* copyIter = pseudoHead;
+
+  while (iter != nullptr) {
+    next = iter->next->next;
+
+    // extract the copy
+    copy = iter->next;
+    copyIter->next = copy;
+    copyIter = copy;
+
+    // restore the original list
+    iter->next = next;
+
+    iter = next;
+  }
+
+  return pseudoHead->next;
     }
 ```
 
