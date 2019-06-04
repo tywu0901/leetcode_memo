@@ -47,6 +47,8 @@
 
 [138. Copy List with Random Pointer](#138-Copy-List-with-Random-Pointer)
 
+[143. Reorder List](#143-Reorder-List)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1283,6 +1285,65 @@ Node* copyRandomList(Node* head) {
   return pseudoHead->next;
     }
 ```
+
+[Back to the top](#readme)
+
+-----
+
+## #143 Reorder List
+把一个linkedlist变成一头一尾一头一尾的顺序：
+
+1-2->3->4 变成 1->4->2->3  
+1-2->3->4->5 变成 1->5->2->4->3  
+
+#### Intuitive thoughts:
+把最后一个node插到第一个后面，iterative over the list。   
+Time Complexity: O(n^2)  
+
+#### Better Solution:
+1. 找到中间点。  
+2. reverse后一半的list  
+3. merge前后两半  
+Time Complexity: O(n)  
+
+#### Code
+```
+void reorderList(ListNode *head) {
+    if (!head || !head->next) return;
+    
+    // find the middle node: O(n)
+    ListNode *p1 = head, *p2 = head->next;
+    while (p2 && p2->next) {
+        p1 = p1->next;
+        p2 = p2->next->next;
+    }
+    
+    // cut from the middle and reverse the second half: O(n)
+    ListNode *head2 = p1->next;
+    p1->next = NULL;
+    
+    p2 = head2->next;
+    head2->next = NULL;
+    while (p2) {
+        p1 = p2->next;
+        p2->next = head2;
+        head2 = p2;
+        p2 = p1;
+    }
+    
+    // merge two lists: O(n)
+    for (p1 = head, p2 = head2; p1; ) {
+        auto t = p1->next;
+        p1->next = p2;
+	p1->next->next = t;
+	p1 = p1->next->next;
+        p2 = p2->next;
+    }
+    
+}
+```
+
+
 
 [Back to the top](#readme)
 
