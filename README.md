@@ -49,6 +49,8 @@
 
 [143. Reorder List](#143-Reorder-List)
 
+[152. Maximum Product Subarray](152-Maximum-Product-Subarray)
+
 [347. Top K Frequent Elements](#347-Top-K-Frequent-Elements)
 
 [402. Remove K Digits](#402-Remove-K-Digits)
@@ -1344,6 +1346,35 @@ void reorderList(ListNode *head) {
 ```
 
 
+
+[Back to the top](#readme)
+
+-----
+
+## #152 Maximum Product Subarray
+找乘积最大的subarray
+
+#### Thoughts：
+乘积就要记录最大正值和最小负值。  
+
+#### Code：
+```
+    int maxProduct(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        
+        int cmax = nums[0], cmin = nums[0];
+        int res = cmax;
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] < 0) swap(cmax, cmin);
+            cmax = max(cmax*nums[i], nums[i]);
+            cmin = min(cmin*nums[i], nums[i]);
+            res = max(cmax, res);
+        }
+        return res;
+        
+    }
+
+```
 
 [Back to the top](#readme)
 
