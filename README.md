@@ -55,6 +55,8 @@
 
 [402. Remove K Digits](#402-Remove-K-Digits)
 
+[763. Partition Labels](#763-Partition-Labels)
+
 [819. Most Common Word](#819-Most-Common-Word)
 
 <br>
@@ -1441,6 +1443,40 @@ void reorderList(ListNode *head) {
        while (ans.length() && k--)  ans.pop_back(); 
     
        return ans.empty() ? "0" : ans;
+    }
+```
+
+
+[Back to the top](#readme)
+
+-----
+
+## #763 Partition Labels
+把一个字符串分成尽量多部分，每个字母只在一个部分中出现。
+
+#### Thoughts：
+既然同样的字母只能在同一个部分，就找每个字母最后出现的位置  
+然后找同一个部分里最后一个出现的字母。
+
+#### Code：
+```
+    vector<int> partitionLabels(string S) {
+        int lp[26];
+
+        for (int i = 0; i < S.size(); i++) 
+            lp[S[i] - 'a'] = i;
+        
+        vector<int> res;
+        
+        for (int j = 0, temp = 0, anchor = 0; j < S.size(); j++) {
+            temp = max(lp[S[j] - 'a'], temp);
+            if (j == temp) {
+                res.push_back(j - anchor + 1);
+                anchor = j+1;
+            }
+        }
+        return res;
+        
     }
 ```
 
